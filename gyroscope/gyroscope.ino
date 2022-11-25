@@ -22,7 +22,7 @@ void setup() {
   //accelerometer.begin();
   sensor.begin();
 
-  Serial.println(String("X, Y, Z"));
+  // Serial.println(String("X, Y, Z"));
 }
 
 void loop() {
