@@ -25,20 +25,27 @@ void loop() {
   static bool toggle = false;
   static uint16_t measurementCount = 0;
   constexpr uint16_t MAX_MEASUREMENTS = 1000;
+  static auto lastCheck = millis();
 
+
+  // Update function should be continuously polled
+  BHY2.update();
+
+  // Check sensor values every second  
+  if (millis() - lastCheck >= 100) {
+    lastCheck = millis();
   //if(measurementCount < MAX_MEASUREMENTS) {
-    BHY2.update();
     if(toggle) {
       nicla::leds.setColor(green);
     } else {
       nicla::leds.setColor(blue);
     }
     sensorXYZ.setRange(uint16_t range)
-    Serial.println(millis() + String(", ")  + sensor.value() + String(", ") + sensorXYZ.x()+ String(", ") + sensorXYZ.y() + String(", ") + sensorXYZ.z());
+    Serial.println(lastCheck + String(", ")  + sensor.value() + String(", ") + sensorXYZ.x()+ String(", ") + sensorXYZ.y() + String(", ") + sensorXYZ.z());
     toggle ^= 1;
     measurementCount++;
-    delay(100);
-  //}
+    //delay(100);
+  }
   
   
 }

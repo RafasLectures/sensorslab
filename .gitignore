@@ -53,3 +53,6 @@ build-*/
 
 # MacOS
 *.DS_Store
+
+# Latex output
+out/

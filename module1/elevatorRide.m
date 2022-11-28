@@ -18,6 +18,7 @@ pressureRaw = elevatorRideRaw(:,2);
 
 %% Convert acceleration to SI values
 conversionRateAccelertation = (8*9.81)/((2^15) - 1);
+%accelerationSI = (accelerationRaw/16384)*9.81;
 accelerationSI = accelerationRaw * conversionRateAccelertation;
 
 %% Get mean of acceleration and pressure
@@ -40,8 +41,19 @@ plotData(t,a, 'Acceleration from Arduino Nicla', ...
               'Time [s]', ...
               'Acceleration [m/s^2]');
 
+%% Get height from pressure data
+pressureMean = mean(pressureRaw((t<=11),1));
+T = 20+273;
+heightFromPressure = (log(pressureMean./pressureRaw)*8.314*T)/(accelerationMeanZ*0.02896);
+%heightFromPressure = log(pressureMean * pressureRaw.^-1) * 8.314 * T / (accelerationMeanZ * 0.02896);
 %% Plot pressure sensor data
 
+plotData(t,pressureRaw, 'Pressure from Arduino Nicla', ...
+              'Time [s]', ...
+              'Pressure [hPa]');
+plotData(t,heightFromPressure, 'Height from pressure', ...
+              'Time [s]', ...
+              'Elevator Height [hm]');
 
 function plotData(x, y, currentTitle, xLabel, yLabel)
     fig = figure('DefaultAxesFontSize',30);
