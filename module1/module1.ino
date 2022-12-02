@@ -32,7 +32,7 @@ void loop() {
   // Update function should be continuously polled
   BHY2.update();
 
-if(measurementCount < MAX_MEASUREMENTS) {
+//if(measurementCount < MAX_MEASUREMENTS) {
   // Check sensor values every second  
   if (millis() - lastCheck >= 100) {
     lastCheck = millis();
@@ -48,7 +48,7 @@ if(measurementCount < MAX_MEASUREMENTS) {
     measurementCount++;
     //delay(100);
   }
-}
+//}
   
   
 }

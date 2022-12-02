@@ -20,9 +20,9 @@ accelerationMean = mean(accelerationSI);
 pressureMean = mean(pressureRaw);
 
 fprintf('Pressure Mean: %d\n',pressureMean);
-fprintf('Acceleration Mean X: %d\n',accelerationMean(1));
-fprintf('Acceleration Mean Y: %d\n',accelerationMean(2));
-fprintf('Acceleration Mean Z: %d\n',accelerationMean(3));
+fprintf('Acceleration Mean X: %d  std: %d\n',accelerationMean(1), std(accelerationSI(:,1)));
+fprintf('Acceleration Mean Y: %d  std: %d\n',accelerationMean(2), std(accelerationSI(:,2)));
+fprintf('Acceleration Mean Z: %d  std: %d\n',accelerationMean(3), std(accelerationSI(:,3)));
 
 plotData("Pressure", "Pressure [hPa]", t, pressureRaw, pressureMean, true);
 plotData("Acceleration X", "Acceleration [m/s^2]", t, accelerationSI(:,1), accelerationMean(1), true);
