@@ -72,11 +72,11 @@
     When the horizontal component of the magnetic field is measured, it is possible to determine the direction of
     magnetic north, which is the direction of the horizontal component.
     However, this direction may not align with true north, which is the direction of the geographic North Pole~\cite{CartographersOffice}.
-    The angle between these two directions is known as magnetic declination, illustrated in Figure~\ref{fig:magneticDeclination}.
+    The angle between these two directions is known as magnetic declination ($\delta_B$), illustrated in Figure~\ref{fig:magneticDeclination}.
 
     \begin{figure}[!h]
         \centering
-        \includegraphics[width=.3\textwidth]{figures/MagneticDeclination}
+        \includegraphics[width=.4\textwidth]{figures/MagneticDeclination}
         \caption{Illustration of magnetic declination (author's own work).}
         \label{fig:magneticDeclination}
     \end{figure}
@@ -101,7 +101,7 @@
     \begin{figure}[!h]
         \centering
         \includegraphics[width=.3\textwidth]{figures/HallEffect}
-        \caption{Principle of hall efect. Current flowing through conductor under a magnetic (adapted from~\cite{labManual}).}
+        \caption{Principle of hall efect. Current flowing through conductor under a magnetic field $B$(adapted from~\cite{labManual}).}
         \label{fig:hallEffect}
     \end{figure}
 
@@ -209,8 +209,9 @@
     To ensure that the magnetic field was constant, the position of the board did not change before and after
     flipping it.
 
-    The measurements of Tasks 3, 4 and 5 were done at same time during the sampling the sensor was aligned to the side of the street.
-    The results were cross-checked with a model from \cite{ngdc}.
+    The measurements of Tasks 3, 4 and 5 were done at same time.
+    During the sampling the sensor was aligned to the side of the street.
+    The results were cross-checked with a model from~\cite{ngdc}.
     The exact location (latitude and longitude) of the measurements was taken from the compass of an iPhone and cross-checked with Google Maps.
     The altitude was taken from the compass of an iPhone.
 
@@ -248,7 +249,7 @@
     \end{figure}
 
     They follow a normal distribution with the mean ($\bar{\mathit{B}}$) and standard deviation($\sigma_B$) shown in Table~\ref{tab:magneticMeasurements}
-    The $x$ and $y$-axis, which use the FlipCore technology show slightly smaller standard deviation comparing to the $z$-axis.
+    The $x$ and $y$-axis, which use the FlipCore technology, show slightly smaller standard deviation in comparison to the $z$-axis.
 
     \begin{table}[!ht]
         \centering
@@ -297,7 +298,7 @@
 
 
     \subsection*{Task 3, 4}
-    Task three was intended to measure the magnetic field outside.
+    Task 3 was intended to measure the magnetic field outside, while task 4 to compute $B_{\mathrm{hor}}$, $B_{\mathrm{vert}}$ and $B$.
     Using the previously computed offsets the non-flipped data from task 2 was used for task 3 and 4.
     The mean value of the magnetic field for each axis, as well as its standard
     deviation were computed.
@@ -344,35 +345,39 @@
     $B_{\mathrm{hor}}$ and $B_{\mathrm{vert}}$ respectively.
     Since the error in both is in the same range, one can also think that the reason is that the sensor was not perfectly
     perpendicular to the vertical and horizontal magnetic fields.
-    Adding to that the sensors output noise of $0.6\si{\micro\tesla}$ and resolution of $0.3\si{\micro\tesla}$ we can say
-    that the measurements are accurate.
+    The sensors output noise of $0.6\si{\micro\tesla}$ and resolution of $0.3\si{\micro\tesla}$ also add to the error.
+    With that in mind we can say that the measurements are accurate.
     The total intensity $B$ is a result from $B_{\mathrm{hor}}$ and $B_{\mathrm{vert}}$ as shown in Equation~\ref{eq:Btotal},
-    the error of 1.9\si{\micro\tesla} makes sense.
+    so the error of 1.9\si{\micro\tesla} makes sense.
 
     \subsection*{Task 5}
     Using the same dataset from task 3 and 4, on task 5 the angle of the magnetic north with respect to the
     geographic north, also known as declination, was computed.
     Since the $y$-axis was facing the geographic north, Equation~\ref{eq:magneticDeclination} was used.
-    The results are shown in Table~\ref{}.
+    The results are shown in Table~\ref{tab:declination}.
 
     \begin{table}[!ht]
         \centering
         \begin{tabular}{cS[table-format=1.3]S[table-format=1.3]S[table-format=1.3]}
             \hline \vspace{-1em} \\
             Source           & {$B_x$ in \si{\micro\tesla}} & {$B_{y}$ in \si{\micro\tesla}} & {Declination in \si{\degree}} \\ \hline
-            Measurement      & 3.936                        & 21.97                          & 10.15                         \\
-            WMM (2019-2024)  & 21.23                        & 43.47                          & 48.38                         \\ \hline
+            Measurement      & 3.93                         & 21.97                          & 10.15                         \\
+            WMM (2019-2024)  & 1.14                         & 21.20                          & 3.08                          \\ \hline
         \end{tabular}
         \caption{Comparison between of the magnetic readings outside and the model.}
         \label{tab:declination}
     \end{table}
 
+    Comparing the values, on $B_{y}$, we see an error of 0.77\si{\micro\tesla} which is almost within the noise range of the sensor.
+    On the other hand, for $B_x$, an error of 2.79\si{\micro\tesla}, in which suggests that the sensor could have
+    had a small inclination around the $y$-axis ($x$-axis not perpendicular to the magnetic field) when the measurement was taken.
+    This could explain the 7º difference on the declination calculation.
+
     \section{Summary}
-    Experiments show that the pressure sensor displays no drift.
-    The acceleration sensor has a very small offset and has no drift, as well as there were no difference observed
-    between the three axes.
-    During the elevator ride, the accelerometer and barometer showed realistic values.
-    Measuring the height with the barometer is better than integrating the acceleration twice.
+    Experiments show that the magnetic sensor readings are stable and displays no drift.
+    The noise level is in the same range according to the specification of the sensor.
+    The measurements and computations Earth's magnetic field are consistent to the model.
+
 
 
 % BibTeX or Biber would be better options, with just 2 reference the "raw" approach is fine for such a report
